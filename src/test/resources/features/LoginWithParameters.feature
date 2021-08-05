@@ -7,7 +7,7 @@ Feature: Login as different users
     And the title contains "Dashboard"
   # "user10" and "UserUser123"    ==> cucumber parameters, you can pass the information with the double code to java side
 
-  @wip
+
   Scenario: login as a driver
     Given the user logged in as "salesmanager"
     Then the user should be able to login

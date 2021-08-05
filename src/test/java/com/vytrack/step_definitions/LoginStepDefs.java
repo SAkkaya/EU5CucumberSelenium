@@ -75,11 +75,12 @@ public class LoginStepDefs {
     public void the_title_contains(String expectedTitle) {
         System.out.println("expectedTitle = " + expectedTitle); //expectedTitle = Dashboard ==> this side will be dynamic
         BrowserUtils.waitFor(2);
+        System.out.println(Driver.get().getTitle());
         Assert.assertTrue(Driver.get().getTitle().contains(expectedTitle));
 
     }
 
-
+/*
     @Given("the user logged in as {string}")
     public void the_user_logged_in_as(String usertype) {
         BrowserUtils.waitFor(2);
@@ -96,6 +97,7 @@ public class LoginStepDefs {
 
     }
 
+*/
 
 
 
