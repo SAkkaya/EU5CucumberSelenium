@@ -11,9 +11,11 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>   <!--removes all warnings under project showed up -->
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -41,6 +43,14 @@
             <artifactId>cucumber-junit</artifactId>
             <version>5.7.0</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->          <!--soft assert-->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.18.1</version>
+
         </dependency>
 
     </dependencies>
@@ -75,8 +85,8 @@
                 <version>5.0.0</version>
                 <executions>
                     <execution>
-                        <id>execution</id>
-                        <phase>verify</phase>     <!-- this lines creates your report) -->
+                        <id>execution</id>     <!-- this lines creates your report) -->
+                        <phase>verify</phase>     <!-- only execute if it verify phase then generate report) -->
                         <goals>
                             <goal>generate</goal>
                         </goals>
@@ -93,7 +103,5 @@
             </plugin>
         </plugins>
     </build>
-
-
 
 </project>

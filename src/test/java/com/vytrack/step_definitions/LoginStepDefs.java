@@ -75,7 +75,7 @@ public class LoginStepDefs {
     public void the_title_contains(String expectedTitle) {
         System.out.println("expectedTitle = " + expectedTitle); //expectedTitle = Dashboard ==> this side will be dynamic
         BrowserUtils.waitFor(2);
-        System.out.println(Driver.get().getTitle());
+        System.out.println("actual Title="+ Driver.get().getTitle());
         Assert.assertTrue(Driver.get().getTitle().contains(expectedTitle));
 
     }

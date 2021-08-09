@@ -1,7 +1,7 @@
 @login
 Feature: Users should be able to login
 
-  Background:
+  Background:    #instance bloc gibi her method dan once calisiyor
     Given the user is on the login page
 
 @driver @VYT-123
