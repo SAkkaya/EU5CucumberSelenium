@@ -8,16 +8,25 @@ import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
+import java.util.concurrent.TimeUnit;
+
 public class Hooks {  //https://www.toolsqa.com/cucumber/execution-order-hooks/
 
 
     @Before
     public void setUp(){
         System.out.println("\tthis is coming from BEFORE ");
+
+        Driver.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Driver.get().manage().window().maximize();
+
     }
 
-//    @AfterStep  scenario yerine step seviyesinde de yapabilirsin screen shot i
 
+
+
+
+//    @AfterStep  scenario yerine step seviyesinde de yapabilirsin screen shot i
     @After
     public void tearDown(Scenario scenario){
         if(scenario.isFailed()){
