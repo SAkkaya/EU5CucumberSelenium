@@ -1,5 +1,6 @@
 package com.vytrack.utilities;
 
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -22,7 +23,6 @@ public class Driver {
         // Test
         if (driver == null) {
             // this line will tell which browser should open based on the value from properties file
-            //before final test master
             String browser = ConfigurationReader.get("browser");
             switch (browser) {
                 case "chrome":
