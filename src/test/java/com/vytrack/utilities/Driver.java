@@ -20,7 +20,7 @@ public class Driver {
     private static WebDriver driver;
 
     public static WebDriver get() {
-        // Test branch deneme
+        // Test 2
         if (driver == null) {
             // this line will tell which browser should open based on the value from properties file
             String browser = ConfigurationReader.get("browser");
