@@ -13,15 +13,15 @@ import org.junit.runner.RunWith;
          */
         //json=> store the information in key and value structure(API related)
         plugin = {"json:target/cucumber.json",  // gives json report under target folder called cucumber.json
-                "html:target/default-html-reports" // gives html report under target folder called default-html-reports
-                    },
+                "html:target/default-html-reports", // gives html report under target folder called default-html-reports
+                "rerun:target/rerun.txt" }, //tells me which feature file and line of the failed scenario
 
         features = "src/test/resources/features",            // "features" keyword create connection with features
             glue = "com/vytrack/step_definitions",           // where is exactly step definitions are, "glue" keyword create connection with features  => java nin altinda oldugu icin direk com dan itibaren path i aldi
             dryRun = false,                                  // dryRun =true --> to get only the undefined definition in steps definition
             tags = "@wip"
 
-//        tags = "not @calc"
+//        tags = "not @calc"  cal haric hepsini calistiriyor
 
 )
 
