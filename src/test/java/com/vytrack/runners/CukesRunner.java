@@ -19,7 +19,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",            // "features" keyword create connection with features
             glue = "com/vytrack/step_definitions",           // where is exactly step definitions are, "glue" keyword create connection with features  => java nin altinda oldugu icin direk com dan itibaren path i aldi
             dryRun = false,                                  // dryRun =true --> to get only the undefined definition in steps definition
-            tags = "@smoke"
+            tags = "@wip"
 
 //        tags = "not @calc"  cal haric hepsini calistiriyor
 

@@ -98,7 +98,7 @@
                             <outputDirectory>${project.build.directory}</outputDirectory>
                             <inputDirectory>${project.build.directory}</inputDirectory>
                             <jsonFiles>
-                                <param>**/cucumber*.json</param>          <!-- this lines reads the json file ( to create your report) -->
+                                <param>**/cucumber*.json</param>  <!-- this lines reads the json file and takes the parameters starts with cucumber and send to report( to create your report) -->
                             </jsonFiles>
                         </configuration>
                     </execution>
