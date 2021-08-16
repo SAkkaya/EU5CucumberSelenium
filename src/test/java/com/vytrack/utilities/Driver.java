@@ -17,73 +17,86 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Driver {
+
     private Driver() {
     }
-    // InheritableThreadLocal  --> this is like a container, bag, pool.
-    // in this pool we can have separate objects for each thread
-    // for each thread, in InheritableThreadLocal we can have separate object for that thread
-    // driver class will provide separate webdriver object per thread
-    private static InheritableThreadLocal<WebDriver> driverPool = new InheritableThreadLocal<>();
+
+    // private static WebDriver driver; //single
+    private static InheritableThreadLocal<WebDriver> driver=new InheritableThreadLocal<>(); //parallel
+
     public static WebDriver get() {
-        //if this thread doesn't have driver - create it and add to pool
-        if (driverPool.get() == null) {
-//            if we pass the driver from terminal then use that one
-//           if we do not pass the driver from terminal then use the one properties file
-            String browser = System.getProperty("browser") != null ? browser = System.getProperty("browser") : ConfigurationReader.get("browser");
+        if (driver.get() == null) {
+            String browser=System.getProperty("browser")!=null? System.getProperty("browser"): ConfigurationReader.get("browser");
+
             switch (browser) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driverPool.set(new ChromeDriver());
+                    //  driver = new ChromeDriver(); //single
+                    driver.set(new ChromeDriver()); //parallel
                     break;
                 case "chrome-headless":
                     WebDriverManager.chromedriver().setup();
-                    driverPool.set(new ChromeDriver(new ChromeOptions().setHeadless(true)));
+                    //  driver = new ChromeDriver(new ChromeOptions().setHeadless(true)); //single
+                    driver.set(new ChromeDriver(new ChromeOptions().setHeadless(true))); //parallel
                     break;
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
-                    driverPool.set(new FirefoxDriver());
+                    //  driver = new FirefoxDriver(); //single
+                    driver.set( new FirefoxDriver()); //parallel
                     break;
                 case "firefox-headless":
                     WebDriverManager.firefoxdriver().setup();
-                    driverPool.set(new FirefoxDriver(new FirefoxOptions().setHeadless(true)));
+                    // driver = new FirefoxDriver(new FirefoxOptions().setHeadless(true)); //single
+                    driver.set(new FirefoxDriver(new FirefoxOptions().setHeadless(true))); //parallel
                     break;
+
                 case "ie":
                     if (!System.getProperty("os.name").toLowerCase().contains("windows"))
-                        throw new WebDriverException("Your OS doesn't support Internet Explorer");
+                        throw new WebDriverException("Your OS doesn't support IE");
                     WebDriverManager.iedriver().setup();
-                    driverPool.set(new InternetExplorerDriver());
+                    // driver = new InternetExplorerDriver(); // single
+                    driver.set(new InternetExplorerDriver());
                     break;
                 case "edge":
                     if (!System.getProperty("os.name").toLowerCase().contains("windows"))
                         throw new WebDriverException("Your OS doesn't support Edge");
                     WebDriverManager.edgedriver().setup();
-                    driverPool.set(new EdgeDriver());
+                    //  driver = new EdgeDriver(); //single
+                    driver.set(new EdgeDriver()); //parallel
                     break;
                 case "safari":
                     if (!System.getProperty("os.name").toLowerCase().contains("mac"))
-                        throw new WebDriverException("Your OS doesn't support Safari");
+                        throw new WebDriverException("Your OS doesn't support safari");
                     WebDriverManager.getInstance(SafariDriver.class).setup();
-                    driverPool.set(new SafariDriver());
+                    //  driver = new SafariDriver(); //single
+                    driver.set(new SafariDriver()); //parallel
                     break;
+
                 case "remote_chrome":
-                    ChromeOptions chromeOptions = new ChromeOptions();
+
+                    ChromeOptions chromeOptions=new ChromeOptions();
                     chromeOptions.setCapability("platform", Platform.ANY);
                     try {
-//                        local
-//                        driverPool.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),chromeOptions));
-//  hacinin
-                        driverPool.set(new RemoteWebDriver(new URL("http://3.87.241.127:4444/wd/hub"),chromeOptions));
-                        //Firmanin virtual machine (Selenium Grid) adresi  , asagidaki Jemalin
-//                        driverPool.set(new RemoteWebDriver(new URL("http://3.228.26.132:4444/wd/hub"),chromeOptions));
+                        driver.set(new RemoteWebDriver(new URL("http://localhost:7777/wd/hub"),chromeOptions));
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
+
             }
+
+
         }
-        return driverPool.get();
+        //  return driver; //single
+        return   driver.get(); //parallel
     }
-    public static void closeDriver() {
-        driverPool.get().quit();
-        driverPool.remove();
+    public static void closeDriver(){
+        if (driver!=null){
+            //  driver.quit(); //single
+            driver.get().quit(); //parallel
+            // driver=null; //single
+            driver.remove();//parallel
+        }
     }
 }
+
+
