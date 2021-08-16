@@ -72,7 +72,7 @@ public class Driver {
 //                        local
 //                        driverPool.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),chromeOptions));
 //  hacinin
-                        driverPool.set(new RemoteWebDriver(new URL("http://192.168.1.4:4444/wd/hub"),chromeOptions));
+                        driverPool.set(new RemoteWebDriver(new URL("http://3.87.241.127:4444/wd/hub"),chromeOptions));
                         //Firmanin virtual machine (Selenium Grid) adresi  , asagidaki Jemalin
 //                        driverPool.set(new RemoteWebDriver(new URL("http://3.228.26.132:4444/wd/hub"),chromeOptions));
                     } catch (MalformedURLException e) {
