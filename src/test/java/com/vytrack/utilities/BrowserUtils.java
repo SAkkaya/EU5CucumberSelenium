@@ -1,6 +1,6 @@
 package com.vytrack.utilities;
 
-import org.junit.Assert;     //import org.testng.Assert;     => TestNG yerine Junit yaptik assertion u
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;

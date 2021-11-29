@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class) // JUnit class to run login.feature
 
-@CucumberOptions(  //to tell Inttelij where is my feature file you have to run
+@CucumberOptions(  //to tell Intellij where is my feature file you have to run
         /*
         - CukesRunner does not know where is my feature file and step-definitions
         - if I do not put the features keyword CukesRunner looks for feture file under the runners package
